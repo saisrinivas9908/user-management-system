@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.req{
+    color: red;
+}
+.textcenter{
+    text-align: center;
+}
+.alert{
+    margin-bottom: 0px;
+}

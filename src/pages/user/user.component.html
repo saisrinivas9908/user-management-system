@@ -1,0 +1,148 @@
+<div style="padding: 30px 100px;">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Email <span class="req">*</span></div>
+        <div class="col-md-3">
+          <input type="email" formControlName="email" class="form-control" [attr.disabled]="editMode ? '' : null" placeholder="Enter Email">
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('email').errors  && isSubmitted">
+            <div *ngIf="userForm.get('email').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">Email is Required.</span>  
+            </div>
+            <div *ngIf="userForm.get('email').hasError('email')" class="alert alert-danger">  
+              <span style="color: red;">Please Enter Valid Email.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Facebook URL <span class="req">*</span></div>
+        <div class="col-md-3">
+          <input type="url" formControlName="url" class="form-control" placeholder="Enter Facebook Url">
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('url').errors  && isSubmitted">
+            <div *ngIf="userForm.get('url').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">Url is Required.</span>  
+            </div>
+            <div *ngIf="userForm.get('url').hasError('pattern')" class="alert alert-danger">  
+              <span style="color: red;">Enter Valid Url.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Gender <span class="req">*</span></div>
+        <div class="col-md-3">
+          <span *ngFor="let gender of genderOptions">
+          <input type="radio" [value]="gender" formControlName="gender"> {{ gender }}&nbsp;&nbsp;</span>
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('gender').errors  && isSubmitted">
+            <div *ngIf="userForm.get('gender').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">Gender is Required.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Date Of Birth <span class="req">*</span></div>
+        <div class="col-md-3">
+          <input type="date" formControlName="dob">
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('dob').errors  && isSubmitted">
+            <div *ngIf="userForm.get('dob').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">Date Of Birth is Required.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Mobile Number <span class="req">*</span></div>
+        <div class="col-md-3">
+          <input type="text" formControlName="mobile" placeholder="Enter Mobile Number">
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('mobile').errors  && isSubmitted">
+            <div *ngIf="userForm.get('mobile').hasError('required')" class="alert alert-danger">
+              <span style="color: red;">Mobile Number is Required.</span>  
+            </div>
+            <div *ngIf="userForm.get('mobile').hasError('minlength')" class="alert alert-danger">  
+              <span style="color: red;">Enter atleast 10 digits.</span>  
+            </div>
+            <div *ngIf="userForm.get('mobile').hasError('pattern')" class="alert alert-danger">  
+              <span style="color: red;">Only Numbers are allowed.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">Qualification <span class="req">*</span></div>
+        <div class="col-md-3">
+          <select formControlName="qualification">
+            <option *ngFor="let qualy of qualificationOptions" [value]="qualy">{{ qualy }}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('qualification').errors  && isSubmitted">
+            <div *ngIf="userForm.get('qualification').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">Qualification is Required.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 textcenter">About Yourself <span class="req">*</span></div>
+        <div class="col-md-3">
+          <textarea formControlName="about" class="form-control" placeholder="Tell About Yourself"></textarea>
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="userForm.get('about').errors  && isSubmitted">
+            <div *ngIf="userForm.get('about').hasError('required')" class="alert alert-danger">  
+              <span style="color: red;">About Yourself is Required.</span>  
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <input type="submit" class="form-control" value="Submit"
+        style="margin: auto; display: block; width: 100px;"></div>
+    </div>
+  </div>
+</form>
+</div>
+<div style="text-align: center; padding: 20px 100px 100px 400px;">
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Facebook Url</th>
+      <th>Gender</th>
+      <th>Date Of Birth</th>
+      <th>Mobile Number</th>
+      <th>Qualification</th>
+      <th>About Yourself</th>
+    </tr>
+    <tr *ngFor="let data of allData">
+      <td>{{ data.email }}</td>
+      <td>{{ data.url }}</td>
+      <td>{{ data.gender }}</td>
+      <td>{{ data.dob }}</td>
+      <td>{{ data.mobile }}</td>
+      <td>{{ data.qualification }}</td>
+      <td>{{ data.about }}</td>
+      <td><button type="submit" (click)="onEdit(data.email)">Edit</button></td>
+      <td><button type="submit" (click)="onDelete(data.email)">Delete</button></td>
+    </tr>
+  </table>
+</div>
